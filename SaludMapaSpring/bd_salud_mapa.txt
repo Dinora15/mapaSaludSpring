@@ -1,0 +1,248 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 18-10-2023 a las 03:15:12
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.2.4
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de datos: `salud_mapa`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `countries`
+--
+
+CREATE TABLE `countries` (
+  `id` bigint(20) NOT NULL,
+  `country_code` varchar(255) NOT NULL,
+  `country_name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `countries`
+--
+
+INSERT INTO `countries` (`id`, `country_code`, `country_name`) VALUES
+(1, 'ITA', 'Italia'),
+(2, 'MEX', 'México'),
+(3, 'ARG', 'Argentina'),
+(4, 'JAP', 'JAPON'),
+(5, 'BEL', 'BELGICA');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `datas`
+--
+
+CREATE TABLE `datas` (
+  `id` bigint(20) NOT NULL,
+  `indicador_code` varchar(255) NOT NULL,
+  `country_code` varchar(255) NOT NULL,
+  `year` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `datas`
+--
+
+INSERT INTO `datas` (`id`, `indicador_code`, `country_code`, `year`) VALUES
+(1, 'SP.UWT.TFRT', 'ABW', '0001'),
+(2, 'SP.REG.DTHS.ZS', 'ABW', '000000000000');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `indicadores`
+--
+
+CREATE TABLE `indicadores` (
+  `id` bigint(20) NOT NULL,
+  `indicador_code` varchar(255) NOT NULL,
+  `indicador_name` varchar(255) NOT NULL,
+  `source_nota` varchar(255) NOT NULL,
+  `source_organization` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `indicadores`
+--
+
+INSERT INTO `indicadores` (`id`, `indicador_code`, `indicador_name`, `source_nota`, `source_organization`) VALUES
+(1, 'SP.UWT.TFRT', 'Unmet need for contraception (% of married women a', 'Unmet need for contraception is the percentage of fertile, married women of reproductive age who do not want to become pregnant and are not using contraception.', 'Household surveys, including Demographic and Health Surveys and Multiple Indicator Cluster Surveys. Largely compiled by United Nations Population Division.'),
+(2, 'SP.REG.DTHS.ZS', 'Completeness of death registration with cause-of-d', 'Completeness of death registration is the estimated percentage of deaths that are registered with their cause of death information in the vital registration system of a country.', 'World Health Organization, Global Health Observatory Data Repository/World Health Statistics (http://apps.who.int/gho/data/node.main.1?lang=en).');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `roles`
+--
+
+CREATE TABLE `roles` (
+  `id` bigint(20) NOT NULL,
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `roles`
+--
+
+INSERT INTO `roles` (`id`, `name`) VALUES
+(1, 'ROLE_ADMIN'),
+(2, 'ROLE_ADMIN');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `user_roles`
+--
+
+CREATE TABLE `user_roles` (
+  `user_id` int(11) NOT NULL,
+  `rol_id` bigint(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `user_roles`
+--
+
+INSERT INTO `user_roles` (`user_id`, `rol_id`) VALUES
+(1, 1),
+(2, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `id` int(11) NOT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `password`, `username`) VALUES
+(1, '$2a$10$G8bCtigqLDu0keIwyfq/meHhGJK0Im19v6y5ByPXq9xu.1tBDi3s.', 'dinora'),
+(2, '$2a$10$dhY4ekoaj8Dn7mDisOROh.BrF1h.vLbx6EDlbOMxPYgJllRztBKuu', 'martha');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios_seq`
+--
+
+CREATE TABLE `usuarios_seq` (
+  `next_val` bigint(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `usuarios_seq`
+--
+
+INSERT INTO `usuarios_seq` (`next_val`) VALUES
+(101);
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `countries`
+--
+ALTER TABLE `countries`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `datas`
+--
+ALTER TABLE `datas`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `indicadores`
+--
+ALTER TABLE `indicadores`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `user_roles`
+--
+ALTER TABLE `user_roles`
+  ADD KEY `FKhibwdx7x4plssg6prkfvc3qv2` (`rol_id`),
+  ADD KEY `FK2chxp26bnpqjibydrikgq4t9e` (`user_id`);
+
+--
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `countries`
+--
+ALTER TABLE `countries`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de la tabla `datas`
+--
+ALTER TABLE `datas`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `indicadores`
+--
+ALTER TABLE `indicadores`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `user_roles`
+--
+ALTER TABLE `user_roles`
+  ADD CONSTRAINT `FK2chxp26bnpqjibydrikgq4t9e` FOREIGN KEY (`user_id`) REFERENCES `usuarios` (`id`),
+  ADD CONSTRAINT `FKhibwdx7x4plssg6prkfvc3qv2` FOREIGN KEY (`rol_id`) REFERENCES `roles` (`id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
