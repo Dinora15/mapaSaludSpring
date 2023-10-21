@@ -23,6 +23,9 @@ public class ConfiguracionSeguridad {
 	              .authorizeHttpRequests((requests) -> requests
 	                      .requestMatchers("/registro**",
 	                    		  "/js/**").permitAll()
+	                      .requestMatchers("/countries/editar/**", "/countries/nuevo").hasAnyRole("ADMIN")
+	                      .requestMatchers("/indicadores/nuevo" , "/indicadores/editar/**").hasAnyRole("ADMIN")
+	                      .requestMatchers("/datas/nuevo" , "/datas/editar/**").hasAnyRole("ADMIN")
 	                      .anyRequest().authenticated()
 	              )
 	              .formLogin((form) -> form

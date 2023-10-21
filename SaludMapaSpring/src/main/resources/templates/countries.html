@@ -1,5 +1,6 @@
 <!DOCTYPE>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="utf-8">
 <title>Countries</title>
@@ -34,7 +35,7 @@
 		<h1>Lista de Countries</h1>		
 	</div>	
 	<div class="row">
-		<div class="col-lg-3">
+		<div sec:authorize="hasRole('ROLE_ADMIN')" class="col-lg-3">
 			<a th:href="@{/countries/nuevo}"class="btn btn-primary btn-sm mb 3">Agregar Country</a>
 		</div>
 	</div>
@@ -45,7 +46,7 @@
 			
 			<th>Nombre</th>
 			<th >Codigo</th>
-			<th >Acciones</th>
+			<th sec:authorize="hasRole('ROLE_ADMIN')">Acciones</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -54,7 +55,7 @@
 			
 			<td th:text="${item.country_name}">Nombre</td>
 			<td th:text="${item.country_code}">Código</td>	
-			<td>
+			<td sec:authorize="hasRole('ROLE_ADMIN')">
 				<a th:href="@{/countries/editar/{id}(id=${item.id})}" class="btn btn-info">Editar</a>
 				<a th:href="@{/countries/{id}(id=${item.id})}" class="btn btn-danger">Eliminar</a>
 			</td>				

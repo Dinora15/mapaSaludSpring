@@ -1,5 +1,6 @@
 <!DOCTYPE>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="utf-8">
 <title>Indicadores</title>
@@ -32,7 +33,7 @@
 		<h1>Lista de Indicadores</h1>		
 	</div>	
 	<div class="row">
-		<div class="col-lg-3">
+		<div sec:authorize="hasRole('ROLE_ADMIN')" class="col-lg-3">
 			<a th:href="@{/indicadores/nuevo}"class="btn btn-primary btn-sm mb 3">Agregar Indicador</a>
 		</div>
 	</div>
@@ -44,7 +45,7 @@
 			<th >Codigo Indicador</th>
 			<th>Source Nota</th>
 			<th>Source Organization</th>
-			<th>Acciones</th>
+			<th sec:authorize="hasRole('ROLE_ADMIN')">Acciones</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -53,7 +54,7 @@
 			<td th:text="${item.indicador_code}"></td>	
 			<td th:text="${item.source_nota}"></td>	
 			<td th:text="${item.source_organization}"></td>	
-			<td>
+			<td sec:authorize="hasRole('ROLE_ADMIN')">
 				<a th:href="@{/indicadores/editar/{id}(id=${item.id})}" class="btn btn-info">Editar</a>
 				<br><br>
 				<a th:href="@{/indicadores/{id}(id=${item.id})}" class="btn btn-danger">Eliminar</a>		

@@ -1,5 +1,6 @@
 <!DOCTYPE>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="utf-8">
 <title>Editar Country</title>
@@ -14,14 +15,14 @@
 					 <a class="nav-link" th:href="@{/}">Inicio</a>                    
                 </li>  
                   <li class="nav-item">
-					  <a class="nav-link" th:classappend="${modulo == 'countries' ? 'active' : ''}" href="#" th:href="@{/countries}">Control de Contries</a>                    
+					  <a class="nav-link" th:classappend="${modulo == 'countries' ? 'active' : ''}" href="#" th:href="@{/countries}">Control de Countries</a>                    
                 </li> 
                 <li class="nav-item">
 					<a class="nav-link" th:classappend="${modulo == 'indicadores' ? 'active' : ''}" href="#" th:href="@{/indicadores}">Control de Indicadores</a>                   
                 </li>
                  <li class="nav-item">
 					<a class="nav-link" th:classappend="${modulo == 'datas' ? 'active' : ''}" href="#" th:href="@{/datas}">Control de Datas</a>                   
-                </li>                
+                </li>            
             </ul>     
 </nav>
 <br>
