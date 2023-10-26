@@ -24,20 +24,22 @@ public class country {
 		 
 	 }	 
 	
-	
+	 // Constructor con parámetros
 	public country(Long id, String country_name, String country_code) {
 		super();
 		this.id = id;
 		this.country_name = country_name;
 		this.country_code = country_code;
 	}
-	
+
+	 // Constructor con parámetros (sin id)
 	public country(String country_name, String country_code) {
 		
 		this.country_name = country_name;
 		this.country_code = country_code;
 	}
-	
+
+	//Metodos setters and getters
 	public Long getId() {
 		return id;
 	}
