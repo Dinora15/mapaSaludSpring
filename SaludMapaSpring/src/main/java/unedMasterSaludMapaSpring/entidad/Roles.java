@@ -21,7 +21,7 @@ public class Roles {
 
 	
 
-
+	//Constructor con parametro name
 	public Roles(String name) {
 		super();
 		this.name = name;
@@ -30,7 +30,7 @@ public class Roles {
 
 
 
-
+	//Constructor predeterminado
 	public Roles() {
 		super();
 	}
@@ -38,7 +38,7 @@ public class Roles {
 
 
 
-
+	// Metodos setters and gettes para Id & name
 	public Long getId() {
 		return id;
 	}
