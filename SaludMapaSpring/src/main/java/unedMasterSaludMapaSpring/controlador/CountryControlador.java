@@ -26,14 +26,15 @@ import unedMasterSaludMapaSpring.servicio.CountryServicio;
 public class CountryControlador {
 
 	
-	@Autowired	
+@Autowired	
 private CountryServicio servicio;
 	
 	
-	
+//Maneja la solicitud GET para /countries
 @GetMapping({"/countries"})	
 public String obtenerTodos(@PageableDefault( size=2, page=0)Pageable pageable, Model model){		
-	
+
+	// Recupera una lista paginada de países desde el servicio
 	Page<country> page=servicio.findAll(PageRequest.of(pageable.getPageNumber(), pageable.getPageSize()));		
 	
 	
@@ -44,6 +45,7 @@ public String obtenerTodos(@PageableDefault( size=2, page=0)Pageable pageable, M
 	var end=Math.min(currentPage + 5, totalPages);
 	
 	if(totalPages >0)
+	// Crea una lista de números de página para la paginación
 	{
 		List<Integer> pageNumbers = new ArrayList<>();
 		for(int i= start; i<=end; i++) {
@@ -55,14 +57,16 @@ public String obtenerTodos(@PageableDefault( size=2, page=0)Pageable pageable, M
 }
 
 
-	
+// Maneja la solicitud GET para "/countries/nuevo"
 @GetMapping({"/countries/nuevo"})
 public String mostrarFormularioDeRegistrarCountry(Model modelo) {
 	country country=new country();
 	modelo.addAttribute("country", country);
+	// Devuelve la vista crear_country
 	return "crear_country";
 }
 
+// Maneja la solicitud POST para /countries
 @PostMapping("/countries")
 public String guardarCountry(@ModelAttribute("country")country country)
 {
@@ -70,27 +74,31 @@ public String guardarCountry(@ModelAttribute("country")country country)
 	return "redirect:/countries";
 }
 
+// Maneja la solicitud GET para /countries/editar/{id}
 @GetMapping("/countries/editar/{id}")
 public String mostrarFormularioDeEditar(@PathVariable Long id, Model modelo) {
 	modelo.addAttribute("country", servicio.obtenerCountryPorId(id));
 	return "editar_country";
 }
 
+// Maneja la solicitud POST para /countries/{id}
 @PostMapping("/countries/{id}")
 public String actualizarCountry(@PathVariable Long id,@ModelAttribute("country") country country, Model modelo ) {
 	
 	country countryExistente=servicio.obtenerCountryPorId(id);
-	
+
+	// Actualiza los atributos del pais
 	countryExistente.setId(id);
-    countryExistente.setCountry_name(country.getCountry_name());
-    countryExistente.setCountry_code(country.getCountry_code());
-    
-    
-    servicio.actualizarCountry(countryExistente);
+	countryExistente.setCountry_name(country.getCountry_name());
+	countryExistente.setCountry_code(country.getCountry_code());
+
+	// Actualiza el pais utlizando el servicio
+    	servicio.actualizarCountry(countryExistente);
 	
 	return "redirect:/countries";
 }
 
+// Maneja la solicitud GET para "/countries/{id}"
 @GetMapping({"/countries/{id}"})
 public String eliminarCountry(@PathVariable Long id) {
 	
