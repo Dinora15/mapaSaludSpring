@@ -10,13 +10,13 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class ConfiguracionSeguridad {
-
+	// Bean para configurar el codificador de contraseñas BCrypt
 	  @Bean
 	   public BCryptPasswordEncoder passwordEncoder() {
 
 	      return new BCryptPasswordEncoder();
 	   }
-
+	// Configuración de seguridad para las solicitudes HTTP
 	  @Bean
 	   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 	      http
