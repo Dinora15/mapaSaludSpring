@@ -8,16 +8,22 @@ import unedMasterSaludMapaSpring.entidad.*;
 
 public interface IndicadorServicio {
 	
-	public List<Indicador> listarTodosLosIndicadores();
-	
-	public Page<Indicador> findAll(Pageable pageable);
-	
-	public Indicador guardarIndicador(Indicador indicador);
+    // Obtiene una lista de todos los indicadores
+    public List<Indicador> listarTodosLosIndicadores();
 
-	 public Indicador obtenerIndicadorPorId(Long Id);
-	    
-	    public Indicador actualizarIndicador(Indicador indicador);
-	    
-	    public void eliminarIndicador(Long Id);
+    // Obtiene una lista paginada de todos los indicadores
+    public Page<Indicador> findAll(Pageable pageable);
 
+    // Guarda un indicador en la base de datos
+    public Indicador guardarIndicador(Indicador indicador);
+
+    // Obtiene un indicador por su ID
+    public Indicador obtenerIndicadorPorId(Long Id);
+
+    // Actualiza un indicador en la base de datos
+    public Indicador actualizarIndicador(Indicador indicador);
+
+    // Elimina un indicador por su ID
+    public void eliminarIndicador(Long Id);
+	
 }
