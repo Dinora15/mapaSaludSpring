@@ -20,17 +20,20 @@ public class RegistroControlador {
 		super();
 		this.servicio = servicio;
 	}
-	
+
+// Añade el modelo de atributo "usuario" como UsuariosRegistroDTO
 @ModelAttribute("usuario")
 public UsuariosRegistroDTO  UsuariosRegistroDTO() {
    return new UsuariosRegistroDTO();
 }
 
+ // Maneja la solicitud GET para "/registro"
 @GetMapping
 public String mostrarFormularioRegistro() {
    return "registro";
 }
 
+// Maneja la solicitud POST para "/registro"
 @PostMapping
 public String registroCuentaUsuario(@ModelAttribute("usuario") 
                UsuariosRegistroDTO registroDTO) {
