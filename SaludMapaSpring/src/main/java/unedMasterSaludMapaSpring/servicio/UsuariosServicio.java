@@ -11,8 +11,10 @@ import unedMasterSaludMapaSpring.entidad.Usuarios;
 
 public interface UsuariosServicio extends UserDetailsService{
 	
-	Usuarios save(UsuariosRegistroDTO registroDTO);
-    
-	public List<Usuarios> getAll();
+	// Guarda un usuario utilizando DTO de registro
+    Usuarios save(UsuariosRegistroDTO registroDTO);
+
+    // Obtiene una lista de todos los usuarios
+    List<Usuarios> getAll();
 
 }
