@@ -5,14 +5,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HomeControlador {
-	  @GetMapping("/login")
-	   public String login() {
-	      return "login";
-	   }
 
-	   @GetMapping("/")
-	   public String home() {
-	      return "index";
-}
+	// Maneja la solicitud GET para "/login"
+	@GetMapping("/login")
+		public String login() {
+		return "login";
+		}
+	// Maneja la solicitud GET para "/"
+	@GetMapping("/")
+		public String home() {
+		return "index";
+		}
 
 }
