@@ -28,7 +28,8 @@ public class Usuarios {
 	
 	@Column(name="password")
 	private String password;
-	
+
+	// Relación ManyToMany con la entidad Roles
 	 @ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	 @JoinTable(
 			 name="user_roles",
@@ -40,7 +41,7 @@ public class Usuarios {
 			 
 	 private Collection<Roles> roles;;
 	 
-
+	// Constructor con parámetros
 	public Usuarios(Integer id, String username, String password, Collection<Roles> roles) {
 		super();
 		this.id = id;
@@ -49,6 +50,7 @@ public class Usuarios {
 		this.roles = roles;
 	}
 
+	 // Constructor con parámetros (sin id)
 	public Usuarios(String username, String password, Collection<Roles> roles) {
 		super();
 		this.username = username;
@@ -60,6 +62,7 @@ public class Usuarios {
 		super();
 	}
 
+	// Metodos setters & getters
 	public Integer getId() {
 		return id;
 	}
