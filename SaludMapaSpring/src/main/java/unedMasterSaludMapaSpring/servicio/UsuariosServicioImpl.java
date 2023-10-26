@@ -33,7 +33,7 @@ public class UsuariosServicioImpl implements UsuariosServicio {
 		this.passwordEncoder = passwordEncoder;
 	}
 
-
+	// Guarda un usuario utilizando DTO de registro
 	@Override
 	public Usuarios save(UsuariosRegistroDTO registroDTO) {
 		
@@ -44,7 +44,7 @@ public class UsuariosServicioImpl implements UsuariosServicio {
 		return repositorio.save(usuario);
 	}
 
-
+	// Carga un usuario por su nombre de usuario para autenticación
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		 var usuario = repositorio.findByUsername(username);
@@ -58,6 +58,7 @@ public class UsuariosServicioImpl implements UsuariosServicio {
 	           mapRolesToAuthorities(usuario.getRoles()));
 	   }
 
+	   // Mapea roles de usuario a autoridades de Spring Security
 	   private Collection<? extends GrantedAuthority>
 	          mapRolesToAuthorities(Collection<Roles> roles) {
 	      
@@ -68,7 +69,7 @@ public class UsuariosServicioImpl implements UsuariosServicio {
 		
 	}
 
-
+	// Obtiene una lista de todos los usuarios
 	@Override
 	public List<Usuarios> getAll() {
 		
